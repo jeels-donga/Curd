@@ -5,6 +5,7 @@ function Crud() {
     const [data, setData] = useState({
         FirstName: "",
         LastName: "",
+        Gender: "",
     })
     const [login, setLogin] = useState(false);
     const [Index, setIndex] = useState();
@@ -14,7 +15,7 @@ function Crud() {
         setData({ ...data, [e.target.name]: e.target.value })
     }
     const Submit = () => {
-        // debugger
+        // debuggerR
         if (!login) {
             InsertData();
             setData({
@@ -78,13 +79,24 @@ function Crud() {
             <div>
                 <input type="text" placeholder='FirstName' name='FirstName' value={data.FirstName} onChange={(e) => handChange(e)} /><br />
                 < input type="text" placeholder='LastName' name='LastName' value={data.LastName} onChange={(e) => handChange(e)} /><br />
+                <div>
+                    <label>Gender</label>
+                    <label>
+                        <input type="radio" name='Gender' value="Male" checked={data.Gender === "Male"} onChange={(e) => handChange(e)} />
+                        Male
+                    </label>
+                    <label>
+                        <input type="radio" name='Gender' value="Female" checked={data.Gender === "Female"} onChange={(e) => handChange(e)} />
+                        Female
+                    </label>
+                </div>
                 <button onClick={() => Submit()}>submit</button>
             </div>
             {
                 (arr == []) ? <h1>empty data</h1> :
                     arr && arr.map((e, i) => {
                         return (
-                            <p key={i}>First Name :- {e.FirstName} Last Name :-{e.LastName} <button onClick={() => EditData(i)}>edit</button> <button onClick={() => DeleteData(i)}>Delete</button></p>
+                            <p key={i}>First Name :- {e.FirstName} Last Name :-{e.LastName} Gender:- {e.Gender} <button onClick={() => EditData(i)}>edit</button> <button onClick={() => DeleteData(i)}>Delete</button></p>
                         )
                     })
 
